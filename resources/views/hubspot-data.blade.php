@@ -14,6 +14,8 @@
     <div class="container my-4">
         <h1 class="text-center mb-4">HubSpot Contacts</h1>
 
+
+
         <!-- Success Message -->
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -32,6 +34,10 @@
 
         <!-- Action Buttons -->
         <div class="mb-4">
+            @if (!isset($contacts) || count($contacts['results']) === 0)
+            <a href="{{ route('get.data') }}" class="btn btn-primary d-block mx-auto" style="width: fit-content;">Fetch Contacts</a>
+        @endif
+
             @if(request('after'))
                 @if((isset($contacts) && count($contacts['results']) > 0))
                     <a href="{{ route('get.data','before='.$contacts['results'][0]['id']) }}" class="btn btn-primary">Pravious</a>
